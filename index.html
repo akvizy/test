@@ -356,7 +356,7 @@
             roomCode = generateCode();
             role = 'host';
 
-            const docRef = doc(db, 'artifacts', appId, 'public', 'data', roomCode);
+            const docRef = doc(db, 'artifacts', appId, 'public', roomCode);
             const initialRoomState = {
                 roomCode: roomCode,
                 hostId: user.uid,
@@ -395,7 +395,7 @@
             roomCode = code;
             role = 'guest';
 
-            const docRef = doc(db, 'artifacts', appId, 'public', 'data', roomCode);
+            const docRef = doc(db, 'artifacts', appId, 'public', roomCode);
             const docSnap = await getDoc(docRef);
 
             if (!docSnap.exists()) {
@@ -423,7 +423,7 @@
         function subscribeToRoom(code) {
             if (unsubscribeRoom) unsubscribeRoom();
 
-            const docRef = doc(db, 'artifacts', appId, 'public', 'data', code);
+            const docRef = doc(db, 'artifacts', appId, 'public', code);
             currentRoomRef = docRef;
 
             unsubscribeRoom = onSnapshot(docRef, (docSnapshot) => {
